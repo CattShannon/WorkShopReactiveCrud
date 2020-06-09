@@ -34,7 +34,7 @@ public class PersonController {
         return Mono.empty();
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public Flux<Person> list() {
         return personService.listAll();
     }

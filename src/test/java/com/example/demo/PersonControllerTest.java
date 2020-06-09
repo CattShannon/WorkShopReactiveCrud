@@ -97,11 +97,12 @@ public class PersonControllerTest {
 
     @Test
     void list() {
-        Flux<Person> list = Flux.just(
+        var list = Flux.just(
                 new Person("a"),
-                new Person("b")
+                new Person("b" )
         );
         when(repository.findAll()).thenReturn(list);
+
         webTestClient.get()
                 .uri("/person")
                 .exchange()
@@ -113,5 +114,6 @@ public class PersonControllerTest {
         verify(personService).listAll();
         verify(repository).findAll();
     }
+
 
 }

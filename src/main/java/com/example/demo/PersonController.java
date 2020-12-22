@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "/person")
 public class PersonController {
@@ -15,8 +13,8 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping
-    public Mono<Void> post(@RequestBody Mono<Person> personMono) {
-        return personService.insert(personMono);
+    public Mono<Void> post(@RequestBody Person personMono) {
+        return personService.insert(Mono.just(personMono));
     }
 
     @GetMapping("/{id}")
@@ -25,7 +23,7 @@ public class PersonController {
     }
 
     @PutMapping
-    public Mono<Void> put(@RequestBody Mono<Person> personMono) {
+    public Mono<Void> put(@RequestBody Person personMono) {
         return Mono.empty();
     }
 
